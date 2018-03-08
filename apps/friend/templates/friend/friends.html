@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Friends</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'friend/css/styles.css' %}">
+</head>
+<body>
+    <div id="container">
+        <a href="/logout">Logout</a>
+        <h1>Hello, {{ request.session.alias }}!</h1>
+        <h3>Here is a list of your friends</h3>
+        <table>
+            <tr>
+                <th>Alias</th>
+                <th>Action</th>
+            </tr>
+            {% for user in friends %}
+                <tr>
+                    <td>{{ user.friend.alias }}</td>
+                    <td><a href="/user/{{ user.friend.id }}">View Profile</a> <a href="/user/remove/{{ user.friend.id }}">Remove as Friend</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+        <div id="bottom">
+            <h3>Other Users not on your friend's list:</h3>
+            <table>
+                <tr>
+                    <th>Alias</th>
+                    <th>Action</th>
+                </tr>
+                {% for user in users %}
+                    <tr>
+                        <td><a href="/user/{{ user.id }}">{{ user.alias }}</a></td>
+                        <td><a href="/user/join/{{ user.id }}">Add as Friend</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</body>
+</html>

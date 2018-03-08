@@ -1,0 +1,54 @@
+#container {
+    /* width: 980px; */
+    margin-left: 100px;
+}
+
+#registration, #login {
+    display: inline-block;
+    vertical-align: top;
+    width: 400px;
+    border: 2px solid black;
+    padding: 30px;
+}
+
+input, label {
+    width: 150px;
+    display: inline-block;
+    height: 20px;
+}
+
+#title{
+    width:50px;
+    padding: 0px 10px 0px 10px;
+    margin-top:-40px;
+    margin-left:10px;
+    background:white;
+}
+
+a, h1, p, button, h2, label, h4 {
+    font-family: arial, sans-serif;
+}
+
+button {
+    width: 100px;
+    height: 30px;
+    box-shadow: 2px 2px black;
+    margin-left: 250px;
+}
+
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 600px;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}

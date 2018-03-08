@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login/Registration</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'friend/css/styles.css' %}">
+</head>
+<body>
+    <div id="container">
+        <h1>Welcome to the Friends App!</h1>
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <div id="registration">
+            <p id='title'>Register</p>
+            <form action="/register" method="POST">
+                {% csrf_token %}
+                <p><label>Name: </label><input type="text" name="name"></p>
+                <p><label>Alias: </label><input type="text" name="alias"></p>
+                <p><label>Email: </label><input type="email" name="email"></p>
+                <p><label>Password: </label><input type="password" name="password"></p>
+                <p>*Password should be at least 8 characters</p>
+                <p><label>Confirm PW: </label><input type="password" name="confirm"></p>
+                <p><label>Date of Birth: </label><input type="date" name="dob"></p>
+                <p><button type="submit">Register</button>
+            </form>
+        </div>
+        <div id="login">
+        <p id='title'>Login</p>
+            <form action="/login" method="POST">
+                {% csrf_token %}
+                <p><label>Email: </label><input type="text" name="email"></p>
+                <p><label>Password: </label><input type="password" name="password"></p>
+                <p><button type="submit" value="Submit">Login</button></p>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
