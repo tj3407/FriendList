@@ -66,19 +66,28 @@ def friends(req):
 
 #GET - add user to friends list
 def join(req, id):
-    Friend.objects.create(user=User.objects.get(id=req.session['user_id']), friend=User.objects.get(id=id))
-    Friend.objects.create(user=User.objects.get(id=id), friend=User.objects.get(id=req.session['user_id']))
-    return redirect('/')
+    if 'user_id' not in req.session:
+        return redirect('/')
+    else:
+        Friend.objects.create(user=User.objects.get(id=req.session['user_id']), friend=User.objects.get(id=id))
+        Friend.objects.create(user=User.objects.get(id=id), friend=User.objects.get(id=req.session['user_id']))
+        return redirect('/')
 
 #GET - remove user from friends list
 def remove(req, id):
-    Friend.objects.get(user=User.objects.get(id=req.session['user_id']), friend=User.objects.get(id=id)).delete()
-    Friend.objects.get(user=User.objects.get(id=id), friend=User.objects.get(id=req.session['user_id'])).delete()
-    return redirect('/')
+    if 'user_id' not in req.session:
+        return redirect('/')
+    else:
+        Friend.objects.get(user=User.objects.get(id=req.session['user_id']), friend=User.objects.get(id=id)).delete()
+        Friend.objects.get(user=User.objects.get(id=id), friend=User.objects.get(id=req.session['user_id'])).delete()
+        return redirect('/')
 
 #GET - show user profile
 def profile(req, id):
-    context = {
-        "user": User.objects.get(id=id)
-    }
-    return render(req, 'friend/profile.html', context)
+    if 'user_id' not in req.session:
+        return redirect('/')
+    else:
+        context = {
+            "user": User.objects.get(id=id)
+        }
+        return render(req, 'friend/profile.html', context)

@@ -13,18 +13,22 @@
         <a href="/logout">Logout</a>
         <h1>Hello, {{ request.session.alias }}!</h1>
         <h3>Here is a list of your friends</h3>
-        <table>
-            <tr>
-                <th>Alias</th>
-                <th>Action</th>
-            </tr>
-            {% for user in friends %}
+        {% if friends|length < 1 %}
+            <h4>You don't have friends yet.</h4>
+        {% else %}
+            <table>
                 <tr>
-                    <td>{{ user.friend.alias }}</td>
-                    <td><a href="/user/{{ user.friend.id }}">View Profile</a> <a href="/user/remove/{{ user.friend.id }}">Remove as Friend</a></td>
+                    <th>Alias</th>
+                    <th>Action</th>
                 </tr>
-            {% endfor %}
-        </table>
+                {% for user in friends %}
+                    <tr>
+                        <td>{{ user.friend.alias }}</td>
+                        <td><a href="/user/{{ user.friend.id }}">View Profile</a> <a href="/user/remove/{{ user.friend.id }}">Remove as Friend</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
         <div id="bottom">
             <h3>Other Users not on your friend's list:</h3>
             <table>
