@@ -1,1 +1,1 @@
-web: gunicorn friends.wsgi
+web: python manage.py runserver
