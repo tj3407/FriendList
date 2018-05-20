@@ -1,1 +1,1 @@
-web: gunicorn travel_buddy.wsgi
+web: gunicorn friends.wsgi
