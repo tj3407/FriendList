@@ -25,7 +25,7 @@ SECRET_KEY = '^#b*v)a98d%goq-y^aak#&bdr+fa7)22)6)1vxn1o96vz^&!@+'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["0.0.0.0", "localhost", "tj-friendlist-demo.herokuapp.com"]
 
 
 # Application definition
@@ -119,3 +119,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Activate Django-Heroku.
+django_heroku.settings(locals())
